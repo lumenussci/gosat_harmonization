@@ -45,9 +45,9 @@ qf_all = True  # If True, keep all data, otherwise only QF=0 data
 start_date = 20090106  # earliset TCCON record is 1/6/2009
 #end_date = 20110101
 
-dtime_max = 1.0  # +/- time difference in hours -- CHANGE TO 2?? 
-dlat_max  = 1.25  # latitude difference in deg -- CHANGE to 7.5??
-dlon_max  = 2.5  # longitude difference in deg -- CHANGE TO 20???
+dtime_max = 1.0  # +/- time difference in hours  
+dlat_max  = 1.25  # latitude difference in deg
+dlon_max  = 2.5  # longitude difference in deg
 dist_max = 20.0  # max distance in degrees 
 #min_soundings_oco2 = 3  # min number of good quality oco2 soundings
 min_soundings_tccon = 15  # min number of TCCON soundings to collocate 
@@ -213,4 +213,5 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-GOSAT collocations')
+
 
