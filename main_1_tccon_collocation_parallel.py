@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ###Python implementation of main_1_match_gosat_to_oco2.pro code on ocomaster (Tommy Taylor's IDL code): /home/ttaylor/analysis_utilities/tropical_iav/code/
-# 
-# This code takes a set of GOSAT soundings and OCO-2 soundings and collocates the OCO-2 soundings with the GOSAT soundings based on conditions set below.
+# Python implementation of main_1_match_gosat_to_oco2.pro (Tommy Taylor's IDL code)
+# This code takes a set of GOSAT and OCO-2 soundings and collocates them based on the conditions set below.
+# Laurel Hopkins Manella 8/11/2025
 
 
 import glob
@@ -213,5 +213,6 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-GOSAT collocations')
+
 
 
