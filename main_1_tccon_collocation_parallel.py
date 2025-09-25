@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Python implementation of main_1_match_gosat_to_oco2.pro (Tommy Taylor's IDL code)
-# This code takes a set of GOSAT and OCO-2 soundings and collocates them based on the conditions set below.
-# Laurel Hopkins Manella 8/11/2025
+# Code to collocate GOSAT soundings to TCCON soundings. Collocation requirements based on 
+# Das et al. (2025) https://doi.org/10.1029/2024EA003935 and Chris O'Dell's TCCON collocations 
+# as defined in tccon_acos_match.pro
+#
+# Laurel Hopkins Manella 9/1/2025
 
 
 import glob
@@ -31,7 +33,7 @@ from pandarallel import pandarallel
 oco2_dir = '/data11/OCO2/product/Lite/B11.1/LtCO2/'
 gosat_dir = '/data6/GOSAT/product/Lite/B9/'
 tccon_dir = '/home/laurel/data/tccon/'
-out_fn = '/home/laurel/match_gosat_v9_tccon_ggg2020_time1_lat2.5_lon5.0_min15_DAS.nc'
+out_fn = '/home/laurel/match_gosat_v9_tccon_ggg2020_time1_lat2.5_lon5.0_min15.nc'
 
 
 # Initialize parallelization - nb_workers can be increased for faster runtime; selected 1/3 
@@ -213,6 +215,7 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-GOSAT collocations')
+
 
 
 
