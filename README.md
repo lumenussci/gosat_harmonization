@@ -1,0 +1,1 @@
+Code to 1) collocate GOSAT to OCO-2, 2) harmonize GOSAT to OCO-2, and 3) evaluate the harmonized GOSAT to OCO-2 and TCCON. Much of this code is based on Tommy Taylor's collocation, harmonization, and evaluation code (see tommy_code for his IDL implementation).  
