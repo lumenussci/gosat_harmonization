@@ -211,7 +211,6 @@ oco_cols_to_ave = ['oco2_co2_profile_apriori0',
 # --------------------------------------------------- #
 list_of_collocations = []  # stores all collocated data
 n = 0  # counter for collocations
-#gosat_types = None
 c = np.pi/180  # for converting degrees to radians; needed for calculating distances
 
 # Loop over GOSAT files
@@ -220,8 +219,6 @@ for gosat_file in gosat_files:
     gosat = h5.File(os.path.join(gosat_dir, gosat_file),'r')
     gosat_date = '20' + gosat_file[11:17]
     gosat_df = utils.gosat_to_dataframe(gosat)
-    #if gosat_types is None:  # only derive gosat_types oncce
-    #    gosat_types = {col_name: str(data_type) for col_name, data_type in zip(gosat_df.columns.to_list(), gosat_df.dtypes.to_list())}  # use for saving gosat files w/ correct types later on
 
     # Only keep good soundings
     """gosat_quality_mask = np.array(gosat['xco2_quality_flag']) == 0  # find good soundings (quality_flag=0)
@@ -248,8 +245,6 @@ for gosat_file in gosat_files:
     print(f'Dates of OCO data that will be loaded: {dates_need}')
 
     # Load OCO data for matching dates
-    #oco_df = _load_oco_data(dates_need, oco2_dir)
-    #oco_df, loaded_oco = load_oco_data(dates_need, loaded_oco, oco2_dir)
     oco_df = load_oco_files_in_parallel(dates_need, oco2_dir)
 
     if oco_df.empty:
@@ -291,11 +286,6 @@ end_time = time.time()
 # Save GOSAT-OCO2 collocations
 # Merge all collocation dataframes into a single dataframe
 full_collocation_df = pd.concat(list_of_collocations)
-# set types
-#ave_oco_types = {col_name: str(data_type) for col_name, data_type in zip(ave_collocated_oco.columns.to_list(), ave_collocated_oco.dtypes.to_list())}  # use for saving gosat files w/ correct types later on
-#gosat_types.update(ave_oco_types)
-
-full_collocation_df = full_collocation_df #.astype(gosat_types)
 
 print('\nDONE PERFORMING COLLOCATIONS')
 print(f'Time elapsed: {(end_time - start_time):.2f} seconds')
@@ -307,3 +297,4 @@ full_collocation_xr = xr.Dataset.from_dataframe(full_collocation_df)
 type_dict = {df_col: {'dtype': str(df_dtype)} for df_col, df_dtype in zip(full_collocation_df.columns.to_list(), full_collocation_df.dtypes.to_list())}
 full_collocation_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4', encoding=type_dict)
 print(f'Saved collocations to: {out_fn}')
+
