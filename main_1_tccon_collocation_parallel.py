@@ -52,7 +52,6 @@ start_date = 20090106  # earliset TCCON record is 1/6/2009
 dtime_max = 1.0  # +/- time difference in hours -- CHANGE TO 2?? 
 dlat_max  = 1.25  # latitude difference in deg -- CHANGE to 7.5??
 dlon_max  = 2.5  # longitude difference in deg -- CHANGE TO 20???
-dist_max = 20.0  # max distance in degrees 
 #min_soundings_oco2 = 3  # min number of good quality oco2 soundings
 min_soundings_tccon = 15  # min number of TCCON soundings to collocate 
 
@@ -73,7 +72,7 @@ instrument_files = [instrument_file for instrument_file, instrument_date in list
 print(f'{len(instrument_files)} {instrument} files match TCCON observation period')
 
 
-def match_tccon_to_instrument(instrument_sounding, tccon_single_day_df, dtime_max, dist_max, 
+def match_tccon_to_instrument(instrument_sounding, tccon_single_day_df, dtime_max, 
                          dlat_max, dlon_max, min_soundings_tccon, instrument): 
     """Function responsible for perfomring collocation based on site-specific collocation
        criteria. Function takes in a single GOSAT/OCO-2 sounding and averages the TCCON 
@@ -203,7 +202,7 @@ for instrument_file in instrument_files:
     instrument_df.loc[:,'timestamp'] = pd.to_datetime(instrument_dt_df[['year', 'month', 'day', 'hour', 'minute', 'second']])
 
     _collocated = instrument_df.parallel_apply(match_tccon_to_instrument, axis=1,
-                           args = (tccon_single_day_df, dtime_max, dist_max, dlat_max, 
+                           args = (tccon_single_day_df, dtime_max, dlat_max, 
                                    dlon_max, min_soundings_tccon, instrument))
      
     # Remove empty dataframes (GOSAT/OCO soundings with no TCCON collocations)
@@ -229,5 +228,6 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-{instrument} collocations')
+
 
 
