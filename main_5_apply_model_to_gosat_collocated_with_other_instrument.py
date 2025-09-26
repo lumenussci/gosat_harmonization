@@ -124,7 +124,6 @@ features = {'landM': ['gosat_retrieval_dws',
 
 corrected_list = []
 
-colloc_data
 # iterate over the three 'settings': landH, landM, oceanH
 for setting in model_settings:
     _gain = model_settings[setting]['gain']
@@ -187,3 +186,4 @@ full_corrected_xr = xr.Dataset.from_dataframe(full_corrected_df)
 
 full_corrected_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4') #, encoding=type_dict)
 print(f'Saved harmonized collocations to: {out_fn}')
+
