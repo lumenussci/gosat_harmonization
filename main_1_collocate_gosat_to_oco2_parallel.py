@@ -287,6 +287,17 @@ end_time = time.time()
 # Merge all collocation dataframes into a single dataframe
 full_collocation_df = pd.concat(list_of_collocations)
 
+# Add timestamp
+datestring = full_collocation_df['gosat_year'].astype(str) + '-' + \
+                full_collocation_df['gosat_month'].astype(str).str.zfill(2) + '-' + \
+                full_collocation_df['gosat_day'].astype(str).str.zfill(2) + 'T' + \
+                full_collocation_df['gosat_hour'].astype(str).str.zfill(2) + ':' + \
+                full_collocation_df['gosat_minute'].astype(str).str.zfill(2) + ':' + \
+                full_collocation_df['gosat_second'].astype(str).str.zfill(2)
+
+full_collocation_df.loc[:,'gosat_timestamp'] = pd.to_datetime(datestring, format='%Y-%m-%dT%H:%M:%S')
+
+
 print('\nDONE PERFORMING COLLOCATIONS')
 print(f'Time elapsed: {(end_time - start_time):.2f} seconds')
 
@@ -297,4 +308,5 @@ full_collocation_xr = xr.Dataset.from_dataframe(full_collocation_df)
 type_dict = {df_col: {'dtype': str(df_dtype)} for df_col, df_dtype in zip(full_collocation_df.columns.to_list(), full_collocation_df.dtypes.to_list())}
 full_collocation_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4', encoding=type_dict)
 print(f'Saved collocations to: {out_fn}')
+
 
