@@ -22,7 +22,7 @@ import datetime
 from pandarallel import pandarallel
 
 
-# define data paths -- PC paths
+# define PC paths
 #oco2_dir  = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\data\\oco2_B11.1\\'  
 #gosat_dir = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\data\\gosat_B9\\'  
 #tccon_dir = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\data\\tccon_mini\\'
@@ -228,6 +228,7 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-{instrument} collocations')
+
 
 
 
