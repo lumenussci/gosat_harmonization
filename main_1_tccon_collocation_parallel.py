@@ -75,14 +75,18 @@ print(f'{len(instrument_files)} {instrument} files match TCCON observation perio
 
 def match_tccon_to_instrument(instrument_sounding, tccon_single_day_df, dtime_max, dist_max, 
                          dlat_max, dlon_max, min_soundings_tccon, instrument): 
+    """Function responsible for perfomring collocation based on site-specific collocation
+       criteria. Function takes in a single GOSAT/OCO-2 sounding and averages the TCCON 
+       soundings that fall within the criteria."""
+                           
     if instrument == 'GOSAT':
         instrument_lat = instrument_sounding.gosat_latitude
         instrument_lon = instrument_sounding.gosat_longitude
         instrument_sid = instrument_sounding.gosat_sounding_id
         instrument_surface_type = instrument_sounding.gosat_retrieval_surface_type
     else:
-        instrument_lat = oco_sounding.oco2_latitude
-        instrument_lon = oco_sounding.oco2_longitude  
+        instrument_lat = instrument_sounding.oco2_latitude
+        instrument_lon = instrument_sounding.oco2_longitude  
         instrument_sid = instrument_sounding.oco2_sounding_id     
         instrument_surface_type = instrument_sounding.oco2_retrieval_surface_type
 
@@ -225,4 +229,5 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-{instrument} collocations')
+
 
