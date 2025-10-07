@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # ###Python implementation of main_1_match_gosat_to_oco2.pro code on ocomaster (Tommy Taylor's IDL code): /home/ttaylor/analysis_utilities/tropical_iav/code/
-# This code takes a set of GOSAT soundings and OCO-2 soundings and collocates the OCO-2 soundings with the GOSAT soundings based on conditions set below.
+# This code takes a set of GOSAT soundings and OCO-2 soundings and collocates the OCO-2 soundings with the GOSAT soundings based on conditions set below. Run 
+# this on OCO Master. 
 
 # Laurel Hopkins Manella 9/4/2025
 
@@ -308,5 +309,6 @@ full_collocation_xr = xr.Dataset.from_dataframe(full_collocation_df)
 type_dict = {df_col: {'dtype': str(df_dtype)} for df_col, df_dtype in zip(full_collocation_df.columns.to_list(), full_collocation_df.dtypes.to_list())}
 full_collocation_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4', encoding=type_dict)
 print(f'Saved collocations to: {out_fn}')
+
 
 
