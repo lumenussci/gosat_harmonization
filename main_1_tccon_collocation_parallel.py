@@ -3,7 +3,7 @@
 
 # Code to collocate GOSAT or OCO-2 soundings to an aggregation of TCCON soundings. Collocation requirements  
 # based on Das et al. (2025) https://doi.org/10.1029/2024EA003935 and Chris O'Dell's TCCON collocations 
-# as defined in tccon_acos_match.pro
+# as defined in tccon_acos_match.pro. Run this on OCO Master.
 #
 # Laurel Hopkins Manella 9/1/2025
 
@@ -228,6 +228,7 @@ if len(list_of_collocations) > 0:
     print(f'Saved collocations to: {out_fn}')
 else:
     print(f'0 total TCCON-{instrument} collocations')
+
 
 
 
