@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code to apply harmonization models to GOSAT data collocated to either TCCON or OCO-2
+# # Code to apply harmonization models to GOSAT data collocated to either TCCON or OCO-2. Run this on OCO Master.
 #
 # # Laurel Hopkins Manella 9/18/25
 
@@ -186,4 +186,5 @@ full_corrected_xr = xr.Dataset.from_dataframe(full_corrected_df)
 
 full_corrected_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4') #, encoding=type_dict)
 print(f'Saved harmonized collocations to: {out_fn}')
+
 
