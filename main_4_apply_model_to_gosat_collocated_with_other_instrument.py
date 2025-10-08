@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code to apply harmonization models to GOSAT data collocated to either TCCON or OCO-2.
+# Code to apply harmonization models to GOSAT data collocated to either TCCON or OCO-2.
 #
-# # Laurel Hopkins Manella 9/18/25
+# Laurel Hopkins Manella 9/18/25
 
 
 import glob
@@ -22,8 +22,7 @@ import glob
 from multiprocessing import Pool
 
 
-# define directories
-
+# Define directories
 # Collocated GOSAT & OCO-2 soundings
 #fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\match_gosat_v9_oco2_v11.1_20140906_20200630_time2_lat2_lon3_min3_dist300_qf=all.nc'
 
@@ -190,6 +189,7 @@ full_corrected_xr = xr.Dataset.from_dataframe(full_corrected_df)
 
 full_corrected_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4') #, encoding=type_dict)
 print(f'Saved harmonized collocations to: {out_fn}')
+
 
 
 
