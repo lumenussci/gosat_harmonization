@@ -14,7 +14,7 @@ Code to 1) collocate GOSAT to OCO-2 and TCCON; 2) harmonize GOSAT to OCO-2; 3) e
 
 **Main_4_apply_model_to_full_gosat_record** applies the harmonization models developed in main_3_harmonization_and_eval to the full GOSAT record. The features used for the harmonization models must be specified in this file in the same order they appear in main_3_harmonization_and_eval. The resulting file is a netcdf which contains the harmonized full GOSAT record. **Run this on OCO Master.** 
 
-**Main_4_apply_model_to_gosat_collocated_with_other_instrument** applies the harmonization models developed in main_3_harmonization_and_eval to GOSAT soundings that are collocated to either OCO-2 or TCCON. The features used for the harmonization models must be specified in this file in the same order they appear in main_3_harmonization_and_eval. The resulting file is a netcdf which contains the harmonized GOSAT soundings and the corresponding aggregated OCO-2/TCCON collocations. **Run this on OCO Master.** 
+**Main_4_apply_model_to_gosat_collocated_with_other_instrument** applies the harmonization models developed in main_3_harmonization_and_eval to GOSAT soundings that are collocated to either OCO-2 or TCCON. The features used for the harmonization models must be specified in this file in the same order they appear in main_3_harmonization_and_eval. The resulting file is a netcdf which contains the harmonized GOSAT soundings and the corresponding aggregated OCO-2/TCCON collocations.
 
 **Main_5_tccon_box_plots** generates TCCON-GOSAT collocation plots for spatial validation, one-to-one TCCON-GOSAT (BC & harmonized) plots, and box and whisker plots for dXCO2 between GOSAT (apriori, BC, and harmonized) and TCCON soundings.   
 
