@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code to apply harmonization models to GOSAT data collocated to either TCCON or OCO-2. Run this on OCO Master.
+# # Code to apply harmonization models to GOSAT data collocated to either TCCON or OCO-2.
 #
 # # Laurel Hopkins Manella 9/18/25
 
@@ -23,15 +23,19 @@ from multiprocessing import Pool
 
 
 # define directories
-#fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\match_gosat_v9_oco2_v11.1_20140906_20200630_time2_lat2_lon3_min3_dist300_qf=all_parallel_airmass_sza.nc'
-fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\match_gosat_v9_tccon_ggg2020_time1_lat2.5_lon5.0_min15.nc'
-model_dir = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\models\\'
 
+# Collocated GOSAT & OCO-2 soundings
+#fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\match_gosat_v9_oco2_v11.1_20140906_20200630_time2_lat2_lon3_min3_dist300_qf=all.nc'
+
+# Collocated GOSAT & TCCON soundings
+fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\match_gosat_v9_tccon_ggg2020_time1_lat2.5_lon5.0_min15.nc'
+
+model_dir = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\models\\'
 landH_fn = 'landH_qf=all_train2014-2017_eval2018.json'
 landM_fn = 'landM_qf=all_train2014-2017_eval2018.json'
 oceanH_fn = 'oceanH_qf=all_train2014-2017_eval2018.json'
 
-out_fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\harmonized_gosat_v9_to_oco2_v11.1_gosat_oco_collocations_version1a.nc'
+out_fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\harmonized_gosat_v9_to_oco2_v11.1_gosat_tccon_collocations_version1a.nc'
 
 
 # Define if GOSAT is collocated to TCCON or OCO-2 - this matters when performing ak
@@ -186,5 +190,6 @@ full_corrected_xr = xr.Dataset.from_dataframe(full_corrected_df)
 
 full_corrected_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4') #, encoding=type_dict)
 print(f'Saved harmonized collocations to: {out_fn}')
+
 
 
