@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # Code to apply harmonization models to the GOSAT record. Run this on OCO Master.
-
+#
 # Laurel Hopkins Manella 9/18/25
 
 
@@ -23,17 +23,14 @@ import glob
 
 # define directories
 gosat_dir = '/data6/GOSAT/product/Lite/B9/'
-#gosat_dir = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\data\\gosat_test\\' 
-#model_dir = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\models\\'
 model_dir = '/home/laurel/models/'
 
 # define harmonization models
-andH_fn = 'landH_qf=all_train2014-2017_eval2018.json'
+landH_fn = 'landH_qf=all_train2014-2017_eval2018.json'
 landM_fn = 'landM_qf=all_train2014-2017_eval2018.json'
 oceanH_fn = 'oceanH_qf=all_train2014-2017_eval2018.json'
 
-#out_fn = 'C:\\Users\\hopki\\Projects\\gosat_oco2\\harmonized_gosat_v9_to_oco2_v11.1.nc'
-out_fn = '/home/laurel/harmonized_gosat_v9_to_oco2_v11.1_version1.nc
+out_fn = '/home/laurel/harmonized_gosat_v9_to_oco2_v11.1_version1a.nc
 
 
 # model and parameter settings
@@ -50,7 +47,7 @@ model_landM = xgb.XGBRegressor()
 model_landM.load_model(os.path.join(model_dir, landM_fn))
 
 model_oceanH = xgb.XGBRegressor()
-model_oceanH.load_model(os.path.join(model_dir, ocean_fn))
+model_oceanH.load_model(os.path.join(model_dir, oceanH_fn))
 
 models = {'landH': model_landH,
           'landM': model_landM,
@@ -161,5 +158,6 @@ full_corrected_xr = xr.Dataset.from_dataframe(full_corrected_df)
 # Save TCCON collocations
 full_corrected_xr.to_netcdf(path=out_fn, mode='w', format='NETCDF4', engine='netcdf4') #, encoding=type_dict)
 print(f'Saved corrected GOSAT to: {out_fn}')
+
 
 
